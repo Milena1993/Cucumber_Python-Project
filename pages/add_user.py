@@ -16,7 +16,6 @@ class AddUser:
     def add_customer_firstname(self):
         fake = Faker()
         first_name = fake.first_name()
-        # self.driver.find_element(*AddUser.firstname_input_field).send_keys(*AddUser.firstname)
         self.driver.find_element(*AddUser.firstname_input_field).send_keys(first_name)
         return first_name
 

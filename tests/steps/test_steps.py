@@ -7,47 +7,41 @@ from pytest_bdd import scenario, given, when, then
 import pytest
 import time
 
-
-# @pytest.mark.usefixtures('setup', 'config')
-# class Test():
-
 @scenario('../features/cucumber.feature', 'As a bank manager, I can add and delete customer')
 
 
-@given('Im on XYZ Bank login Page')
+@given("I'm on XYZ Bank login Page")
 def test_add_cutsomer_flow(setup):
-    actual_result = LoginPage.get_page_title()
-    expected_result = LoginPage.page_title
+    loginPage = LoginPage(setup)
+    actual_result = loginPage.get_page_title()
+    expected_result = loginPage.page_title
     assert actual_result == expected_result
     
-@when('I login as a bank manager and I click on "Add Customer" button ')
+@when("I login as a bank manager and I click on Add Customer button")
 def login(setup):
     loginPage = LoginPage(setup)
     loginPage.bank_manager_login()
 
-@when('I fill up all the required fields and click on "Add Customer" button')
-def add_customer(setup):
+@when("I fill up all the required fields and click on Add Customer button")
+@when("I search the new created customer by any parameter")
+@then("I assert that the customer is added with correct info")
+def add_search_customer(setup):
     addUser = AddUser(setup)
     first_name = addUser.add_customer_firstname()
     last_name = addUser.add_customer_lastname()
     postal_code = addUser.add_customer_postcode()
-    
-    
-# @when('I search the new created customer by any parameter')
-# @then('I assert that the customer is added with correct info')
-# def search_customer(setup):
     customerPage = Customerpage(setup)
     customerPage.search_customers(first_name)
     assert first_name == customerPage.table_firstname()
     assert last_name == customerPage.table_lastname()
     assert postal_code == customerPage.table_postcode()
-    
+   
 
-# @when('I delete the customer by click on "Delete" button')
-# @then('I assert that the customer information is deleted')
-# def search_customer(setup):
+@when("I delete the customer by click on Delete button")
+@then("I assert that the customer information is deleted")
+def delete_customer(setup):
     deleteUser = DeleteUser(setup)
     deleteUser.delete_customer()
     assert deleteUser.table_existing_check() == None
-    time.sleep(2)
+  
     

@@ -5,9 +5,9 @@ from pages.add_user import AddUser
 class Customerpage(AddUser):
     customers_button = (By.XPATH,'//button[@ng-click="showCust()"]')
     search_customer_field = (By.XPATH, '//input[@placeholder = "Search Customer"]')
-    t_firstname = (By.CSS_SELECTOR, 'tbody>tr>td:nth-child(1)')
-    t_lastname = (By.CSS_SELECTOR, 'tbody>tr>td:nth-child(2)')
-    t_postcode = (By.CSS_SELECTOR, 'tbody>tr>td:nth-child(3)')
+    t_firstname = (By.CSS_SELECTOR, 'tbody>tr>td:nth-child(1)') #under improvement :) 
+    t_lastname = (By.CSS_SELECTOR, 'tbody>tr>td:nth-child(2)') #under improvement :) 
+    t_postcode = (By.CSS_SELECTOR, 'tbody>tr>td:nth-child(3)') #under improvement :) 
 
  
     def search_customers(self, locator):
