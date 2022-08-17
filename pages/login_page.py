@@ -18,6 +18,3 @@ class LoginPage:
     def bank_manager_login(self):
         self.driver.find_element(*LoginPage.button_manager_login_button).click()
         self.driver.find_element(*LoginPage.add_customer_button).click()
-        
-
-

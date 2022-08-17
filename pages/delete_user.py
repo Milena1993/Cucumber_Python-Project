@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 
-
 class DeleteUser:
 
    delete_button = (By.XPATH,'//button[@ng-click="deleteCust(cust)"]')
@@ -16,5 +15,10 @@ class DeleteUser:
 
    def table_existing_check(self):
       try:
-         return self.driver.find_element(*DeleteUser.table)
-      except: NoSuchElementException
+         self.driver.find_element(*DeleteUser.table)
+      except NoSuchElementException:
+        return False
+      return True
+
+
+   
